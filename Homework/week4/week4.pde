@@ -32,6 +32,7 @@ void setup() {
   text1 = "Hey, what do you think you're doing.";
   text2 = "Cut that out!";
   text3 = "How do you like me now?";
+  text4 = "Can't click me now, can you?";
 }
 
 void draw() {
@@ -66,14 +67,19 @@ void draw() {
     ellipse(x4, y4, size, size);
     ellipse(500, 500, size, size);
     ellipse(random(x), random(y), size, size);
+    ellipse(random(x), random(y), size, size);
   } else {
     //background(255);
   }
   
   if (buttonClicked4) {
-    background (255);
-    fill(0,0,0);
-    ellipse(x4, y4, size, size);
+    background (0);
+    fill(255);
+    ellipse(x4, y4, 10, 10);
+    text(text4, 200,200);
+    translate(x,y);
+    rotate(radians(rot)); 
+    rect(0,0,mouseX/2,mouseY/2);
   }else{
     
   }
@@ -98,11 +104,13 @@ void mousePressed() {
   if (calcDistance(x3, y3) <= 50) {
     buttonClicked3 = !buttonClicked3;
     
+  }
+    
    if (calcDistance(x4, y4) <= 50) {
      buttonClicked4 = !buttonClicked4;
     }
   }
-}
+
 
 float calcDistance(int xPos, int yPos) {
   dist = dist(mouseX, mouseY, xPos, yPos);
