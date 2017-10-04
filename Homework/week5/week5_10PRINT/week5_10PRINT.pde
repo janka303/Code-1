@@ -1,6 +1,6 @@
 int c, x=0;
 int y=-1;
-PImage s;
+
 void setup() {
     size(600,600);
     frameRate(20);
@@ -17,8 +17,7 @@ void draw() {
     }
     if (y>595) {
       y=94;
-      s = get();
       background(204);
-      image(s, 0, -15);
+
     }
 }
