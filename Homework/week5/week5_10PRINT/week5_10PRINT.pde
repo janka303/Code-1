@@ -10,7 +10,7 @@ void draw() {
     //stroke(random(0,255));
     c=int(random(2))*5;
     line(x+c, y, x+5-c, y+30);
-    x+=5;
+    x+=7;
     if (x>595) {
         x=0;
         y+=30;
