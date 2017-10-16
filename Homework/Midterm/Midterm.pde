@@ -7,11 +7,23 @@ int y;
 float dist; 
 String text1, text2, text3, text4;
 
+//scene1
+int numE = 100; 
+int eSize[]= new int[numE]; 
+int[] eSpeedX = new int[numE];
+int[] eSpeedY = new int[numE]; 
+int[] ePosX = new int [numE]; 
+int[] ePosY = new int [numE]; 
+color[] baseColor = new int[numE]; 
+
+
 void setup(){
     size(1500, 1500); 
     x = width/2; 
     y = height/2; 
-  
+    textSize(20);
+    text1 = "Hey, how are you. I'm here to show you around. Click me to follow.";
+
 }
 
 void draw(){
@@ -20,18 +32,22 @@ goodBall(width/2, height/2);
 
   if (buttonClicked){
     goodBall(mouseX, mouseY);
+    fill(255);
+    rect(width/4, height/4, 110, 110);
+  }else{
+    text(text1, width/2 - 300, height/2 - 100);    
   }
   
-  xPos = xPos + xVel;
-  yPos = yPos + yVel;
-  
-  if(xPos > width  - radius/2 || xPos < 0 + radius/2){
-    xVel = xVel*-1;
+  if(mousePressed){
+   scene1(); 
+  }
 
-  }
-  if (yPos > height - radius/2 || yPos < 0 + radius/2){
-    yVel = yVel*-1;
-  }
+  
+  //if(mouseX = width/4, mouseY = height/4){
+    //scene1();
+
+    
+   println(calcDistance(x, y));
 }
 
 void goodBall(int x, int y){
@@ -41,6 +57,14 @@ void goodBall(int x, int y){
 }
 
 void badBall(){
+  
+}
+
+void scene1(){
+
+}
+
+void scene2(){
   
 }
 
