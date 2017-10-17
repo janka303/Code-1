@@ -2,12 +2,15 @@ float xPos, yPos;
 float xVel, yVel;
 int radius = 100;
 boolean buttonClicked;
+boolean buttonClicked1;
 int q; 
 int w; 
+int x2;
+int y2;
 float x;
 float y;
 float dist; 
-String text1, text2, text3, text4;
+String text1, text2, text3, text4, text5, text6, text7, text8;
 
 int goodBall;
 int step = 0;
@@ -34,7 +37,16 @@ void setup(){
     w = height/2; 
     textSize(20);
     text1 = "Hey, how are you. I'm here to show you around. Click me to follow.";
-
+    text2 = "This is pretty cool, but let's move on here!. Find the place 1/4 of the ellipses join together.";
+    text3 = "Find the hidden passage.";
+    text4 = "Uu, this looks fun. Let's draw something cool.";
+    text5 = "Hey, what do you think you're doing? This is my turf.";
+    text6 = "You've made a huge mistake...";
+    text7 = "Hide me behind that square.";
+    text8 = "Hahahah";
+    x2 = height/4;
+    y2 = width/4;
+    
   //Scene 1
    for(int i = 0; i<numE; i++){
     ePosX[i] = int(random(0, 5)); 
@@ -59,11 +71,6 @@ void setup(){
 }
 
 
-
-
-
-
-
 void draw(){
   
 goodBall(width/2, height/2);
@@ -72,6 +79,7 @@ goodBall(width/2, height/2);
     goodBall(mouseX, mouseY);
     fill(255);
     rect(width/4, height/4, 110, 110);
+    text(text7, width/6, height/5);
   }else{
     text(text1, width/2 - 300, height/2 - 100);    
   }
@@ -81,12 +89,12 @@ goodBall(width/2, height/2);
     
   }
    
-  if(mouseX ==1440){
+  if(mouseX == 1010){
     step = 2;
     
   }
   
-  if(mouseX == 4){
+  if(mouseX == 1450){
     step = 3;
     
   }
@@ -97,22 +105,36 @@ goodBall(width/2, height/2);
   }
   if (step == 1){
    scene1(); 
+   fill(255);
+   text(text2, width/8, height/2);
   }
   
   if (step == 2){
    scene2();
+   fill(255);
+   text(text3, width/4, height/2);
   }
   
   if (step == 3){
    scene3();
+   fill(255);
+   text(text4, width/8, height/2);
   }
   
   if (step == 4){
-   tagScene();
+   scene4();
+   fill(255,0,0);
+   text(text5, height/5, width/5);
   }
+  if (buttonClicked1){
+    tagScene();
+    fill(255,0,0);
+    text(text6, height/5, width/5);
     
+  }
+ 
     
-
+  
   
   //if(mouseX = width/4, mouseY = height/4){
     //scene1();
@@ -122,9 +144,9 @@ goodBall(width/2, height/2);
 }
 
 void goodBall(int x, int y){
+   background(0);
    noStroke();
    smooth();
-   background(0);
    fill(#8DFAB4);
    ellipse(x, y, radius, radius);
    //fill(255);
@@ -167,6 +189,9 @@ background(random(10,50));
 void scene2(){
   background(255);
   //frameRate(15);
+  fill(255);
+  text(text3, width/2, height/2);
+  goodBall(mouseX, mouseY);
   
   for(int i = 0; i <= width; i+= width/17){
     for(int j = 0; j <= height; j += height/17){
@@ -174,7 +199,7 @@ void scene2(){
       float dist = dist(mouseX, mouseY, i, j);
       
       float c = map(dist, 0, 400, 255, 0);
-      float s = map(dist, 0, width, 10, 50);
+      float s = map(dist, 0, 900, 10, 0);
       fill(c, 10 , 120);
       ellipse(i, j, s, s);
       rect(i,j, s, s);
@@ -183,32 +208,49 @@ void scene2(){
 }
 
 void scene3(){
+  
+  goodBall(mouseX, mouseY);
+  
   fill(0, 0);
   rect(0,0, width, height);
   
   stroke(200);
   //line(mouseX, mouseY, width/2, height/2); //creates origin at middle, radial lines
   //line(mouseX, height/4, mouseY, width/6);
+  fill(0, 0);
   line(mouseX, height/6, mouseY, width/4);
   line(mouseX, height, mouseY, width/20);
+}
+
+void scene4(){
+  background(0);
+  ellipse(height/2, width/2, radius, radius);
+  fill(255,0,0);
+  ellipse(x2, y2, radius, radius);
+  
 }
 
 void tagScene(){
   background(0);
   
     fill(0,255,0);
-    ellipse(mouseX, mouseY, 100, 100);
+    goodBall(mouseX, mouseY);
 
   
-    x = lerp(x, mouseX, 0.05);
-    y = lerp(y, mouseY, 0.05);
+    x = lerp(x, mouseX, 0.02);
+    y = lerp(y, mouseY, 0.02);
   
-    fill(255);
+    fill(255,0,0);
     stroke(255);
     ellipse(x, y, size, size);
     
-    if (size <= 1000 && millis() - timer >= 10000){
+    if (size <= 2500 && millis() - timer >= 10000){
       size +=2;
+    }
+    if (millis() - timer >= 10010){
+      fill(255);
+      textSize(50);
+      text(text8, height/2, width/2);
     }
 }
   
@@ -218,6 +260,9 @@ void mousePressed(){
    if (calcDistance(q, w) <= 50) {
     buttonClicked = !buttonClicked;
   }
+   if (calcDistance(x2, y2) <= 50) {
+    buttonClicked1 = !buttonClicked1;
+   }
 }
 
 float calcDistance(int xPos, int yPos) {
