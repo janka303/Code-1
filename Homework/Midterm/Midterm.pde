@@ -1,3 +1,6 @@
+import processing.sound.*;
+
+
 float xPos, yPos;
 float xVel, yVel;
 int radius = 100;
@@ -10,9 +13,10 @@ int y2;
 float x;
 float y;
 float dist; 
-String text1, text2, text3, text4, text5, text6, text7, text8;
+String text1, text2, text3, text4, text5, text6, text7, text8, text9, text10, text11;
 
-int goodBall;
+boolean goodBall;
+boolean badBall;
 int step = 0;
 
 //scene1
@@ -32,18 +36,21 @@ int timer;
 
 
 void setup(){
-    size(1500, 1500); 
+    size(1000,1000);
     q = width/2; 
     w = height/2; 
     textSize(20);
     text1 = "Hey, how are you. I'm here to show you around. Click me to follow.";
-    text2 = "This is pretty cool, but let's move on here!. Find the place 1/4 of the ellipses join together.";
-    text3 = "Find the hidden passage.";
-    text4 = "Uu, this looks fun. Let's draw something cool.";
+    text2 = "Phew, that was close. We can't let it catch us.";
+    text9 = "These create a portals everytime they meet. Look for an opening.";
+    text3 = "I think it's getting closer. We have to find the passage!";
+    text4 = "Oh no! Dead end!";
     text5 = "Hey, what do you think you're doing? This is my turf.";
     text6 = "You've made a huge mistake...";
-    text7 = "Hide me behind that square.";
+    text7 = "Oh no, do you see that? Hide me behind that square, quickly!";
     text8 = "Hahahah";
+    text10 = "You're Dead.";
+    text11 = "You're getting closer! Follow the arrows.";
     x2 = height/4;
     y2 = width/4;
     
@@ -80,33 +87,46 @@ goodBall(width/2, height/2);
     fill(255);
     rect(width/4, height/4, 110, 110);
     text(text7, width/6, height/5);
+    fill(255, 0, 0);
+    ellipse(x, y, 100, 100);
   }else{
     text(text1, width/2 - 300, height/2 - 100);    
   }
   
-  if(mouseX == 435){
+  if (millis() - timer >= 10110){
+    badBall();
+    x = lerp(x, mouseX, 0.05);
+    y = lerp(y, mouseY, 0.05);
+  }
+
+  
+    
+  if(mouseX > 300 && mouseX < 310 && mouseY > 300 && mouseY < 310){
     step = 1;
     
   }
    
-  if(mouseX == 1010){
+  if(mouseX < 690 && mouseX > 640 && mouseY > 640 && mouseY < 670){
     step = 2;
     
   }
   
-  if(mouseX == 1450){
+  if(mouseX == 950){
     step = 3;
     
   }
   
-  if(mouseX == 750){
+  if(mouseX > 0 && mouseX <100 && mouseY > 900 && mouseY < 1000){
     step = 4;
    
   }
   if (step == 1){
    scene1(); 
    fill(255);
-   text(text2, width/8, height/2);
+   text(text2, width/9, height/4);
+   text(text9, width/9, height/4 + 20);
+   
+   
   }
   
   if (step == 2){
@@ -128,8 +148,6 @@ goodBall(width/2, height/2);
   }
   if (buttonClicked1){
     tagScene();
-    fill(255,0,0);
-    text(text6, height/5, width/5);
     
   }
  
@@ -204,22 +222,23 @@ void scene2(){
       ellipse(i, j, s, s);
       rect(i,j, s, s);
     }
+    if (mouseX > 700 && mouseX < 1000 && mouseY > 700){
+  
+    fill(random(0,255), random(0,255), random(0,255), 10);
+    ellipse(900, 900, 350, 350);
+  }
+  
+    
   }
 }
 
 void scene3(){
-  
+  background(0);
   goodBall(mouseX, mouseY);
-  
-  fill(0, 0);
-  rect(0,0, width, height);
-  
-  stroke(200);
-  //line(mouseX, mouseY, width/2, height/2); //creates origin at middle, radial lines
-  //line(mouseX, height/4, mouseY, width/6);
-  fill(0, 0);
-  line(mouseX, height/6, mouseY, width/4);
-  line(mouseX, height, mouseY, width/20);
+  if(mouseX > 0 && mouseX <200 && mouseY > 800 && mouseY < 1000){
+    fill(random(0,255), random(0,255), random(0,255), 10);
+    ellipse(100, 800, 350, 350);
+  }
 }
 
 void scene4(){
@@ -236,25 +255,35 @@ void tagScene(){
     fill(0,255,0);
     goodBall(mouseX, mouseY);
 
-  
-    x = lerp(x, mouseX, 0.02);
-    y = lerp(y, mouseY, 0.02);
+    fill(255,0,0);
+    text(text6, height/5, width/5);
+    x = lerp(x, mouseX, 0.03);
+    y = lerp(y, mouseY, 0.03);
   
     fill(255,0,0);
     stroke(255);
-    ellipse(x, y, size, size);
+    ellipse(x-20, y-20, size, size);
     
-    if (size <= 2500 && millis() - timer >= 10000){
+    if (size <= 2500 && millis() - timer >= 20000){
       size +=2;
     }
-    if (millis() - timer >= 10010){
+    if (millis() - timer >= 21000){
       fill(255);
       textSize(50);
       text(text8, height/2, width/2);
     }
+    if(millis() - timer >= 35000){
+      background(0);
+      fill(255);
+      text(text10, height/2, width/2-50);
+    }
+   
 }
   
-
+void badBall(){
+  fill(255, 0, 0);
+  ellipse(x, y, size, size);
+}
 
 void mousePressed(){
    if (calcDistance(q, w) <= 50) {
