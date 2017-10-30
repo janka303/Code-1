@@ -1,5 +1,7 @@
-import processing.sound.*;
+//import processing.sound.*;
+//SoundFile file;
 
+//wanted to import sound file but it kept crashing my program
 
 float xPos, yPos;
 float xVel, yVel;
@@ -37,14 +39,16 @@ int timer;
 
 void setup(){
     size(1000,1000);
+    //file = new SoundFile(this, "sound1.mp3");
+    
     q = width/2; 
     w = height/2; 
     textSize(20);
     text1 = "Hey, how are you. I'm here to show you around. Click me to follow.";
     text2 = "Phew, that was close. We can't let it catch us.";
-    text9 = "These create a portals everytime they meet. Look for an opening.";
+    text9 = "These create a portals everytime they meet. Look for a place where they cluster.";
     text3 = "I think it's getting closer. We have to find the passage!";
-    text4 = "Oh no! Dead end!";
+    text4 = "Oh no! Dead end! Look around for an exit!";
     text5 = "Hey, what do you think you're doing? This is my turf.";
     text6 = "You've made a huge mistake...";
     text7 = "Oh no, do you see that? Hide me behind that square, quickly!";
@@ -272,10 +276,11 @@ void tagScene(){
       textSize(50);
       text(text8, height/2, width/2);
     }
-    if(millis() - timer >= 35000){
+    if(millis() - timer >= 45000){
       background(0);
       fill(255);
       text(text10, height/2, width/2-50);
+      //file.play();
     }
    
 }
