@@ -9,30 +9,24 @@ class Wave {
   int w;              // Width of entire wave
 
   float theta = 0.0;  // Start angle at 0
-  float amplitude = 75.0;  // Height of wave
-  float period = 500.0;  // How many pixels before the wave repeats
+  float amplitude = 100.0;  // Height of wave
+  float period = random(300,500.0);  // How many pixels before the wave repeats
   float dx;  // Value for incrementing X, a function of period and xspacing
   float [] yvalues;  // Using an array to store height values for the wave
   
-  Wave(){
-    position = new PVector(mouseX, mouseY);
+  Wave(int x, int y){
+    position = new PVector(x, y);
     acceleration = new PVector(0, 0.5);
   
   }
   
-  void ellipseLine(){
-    for(int i = 0; i<num; i++){
-      xPos[i] = i*size;  
-      ellipse(xPos[i], 100, size, size);
-    }
-  }
   
   void calcWave(){
     w = width+16;
     dx = (TWO_PI / period) * xspacing;
     yvalues = new float[w/xspacing];
     
-    theta += 0.02;
+    theta += random(0.01, 0.09);
 
     // For every x value, calculate a y value with sine function
     float x = theta;
@@ -44,7 +38,8 @@ class Wave {
     
   void renderWave(){
     noStroke();
-    fill(255);
+    float c = (map(width, 20, 150, 0, 175));
+    fill(150, c, 20);
     // A simple way to draw the wave with an ellipse at each location
     for (int x = 0; x < yvalues.length; x++) {
       ellipse(x*xspacing, height/2+yvalues[x], 16, 16);
@@ -53,7 +48,6 @@ class Wave {
     
   
   void display(){
-    fill(255);
     renderWave();
     calcWave();
   }

@@ -2,25 +2,35 @@
 
 int num = 100;
 
-Wave [] wave = new Wave[num];
-
+//Wave [] wave = new Wave[num];
+ArrayList <Wave> waves = new ArrayList<Wave>(); 
 Wave w;
 
 void setup(){
   size(1000,1000);
 
   
-  w = new Wave();
+  //w = new Wave();
+  
+  
 }
 
 void draw(){
   background(0);
-  w.display();
-  w.calcWave();
-  w.renderWave();
+  //w.display();
+  //w.calcWave();
+  //w.renderWave();
+  
+  for(int i = 0; i<waves.size(); i++){
+    Wave w = waves.get(i); 
+    //w.display(); 
+    w.calcWave(); 
+    w.renderWave(); 
+  }
 
 }
 
 void mousePressed(){
-  wave.add(new Wave(mouseX, mouseY)); 
+  waves.add(new Wave(mouseX, mouseY)); 
+
 }
