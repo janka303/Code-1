@@ -15,9 +15,7 @@ void draw(){
     w.step();
     w.display();
   }
-    
-  //w.step();
-  //w.display();
+
 }
 
 void mousePressed(){

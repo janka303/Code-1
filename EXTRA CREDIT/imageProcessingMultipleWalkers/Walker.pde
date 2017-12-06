@@ -1,6 +1,7 @@
 class Walker{
   int x, y;
   PImage img;
+  int counter = 0;
   
   Walker(int x, int y){
     this.x = x; 
@@ -12,7 +13,7 @@ class Walker{
     noStroke();
     color posColor = img.get(x,y);   
     fill(posColor);
-    rect(x, y, 10, 10);
+    rect(x, y, 5, 5);
   }
   
   void step(){
@@ -27,8 +28,11 @@ class Walker{
     }else{
       this.y -= 5;
     }
+
     
     this.x = constrain(this.x, 0, width);
     this.y = constrain(this.y, 0, height);
+    
+
   }
 }

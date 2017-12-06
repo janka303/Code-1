@@ -1,6 +1,7 @@
 class Walker{
   int x, y;
   PImage img;
+  int counter = 0;
   
   Walker(int x, int y){
     this.x = x; 
@@ -17,7 +18,7 @@ class Walker{
   
   void step(){
     int choice = int(random(4));
-    
+    if(counter<10){
     if(choice == 0){
       this.x += 5;
     }else if (choice == 1){
@@ -30,5 +31,8 @@ class Walker{
     
     this.x = constrain(this.x, 0, width);
     this.y = constrain(this.y, 0, height);
+    
+    counter++;
+    }
   }
 }
