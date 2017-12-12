@@ -6,7 +6,7 @@ void setup(){
   size(1229,978); 
   //w = new Walker(width/2, height/2);
   background(255);
-  frameRate(1000000000);
+  //frameRate(1000000000);
 }
 
 void draw(){

@@ -14,6 +14,7 @@ class Pierog{
     y = int(random(0, height));
     xVel = int(random(-5, 15));
     yVel = int(random(-5, 15));
+    
   }
   
   void drawPierog(){

@@ -11,8 +11,6 @@ class Escape {
  
  
   void keyPress() {
-    //x = 950
-
     if (key == CODED) {
       if (keyCode == LEFT) {
         x = x - 5;
@@ -52,15 +50,17 @@ class Escape {
   }
   
   void checkEdges(){
-    println(x);
+    print(y);
     if(x >= 440 || x < 0){
       println("potato");
       x=440;
-      direction = 0;
-      direction2 = 0;
-       
+      //direction = 0;
+      //direction2 = 0;
     }
-
+    
+    if(y>=155 && y<=180 && x >= 440 || y>=420 && y <= 460 && x >=440){
+      x=500;
+    }
   }
 }
 

@@ -5,6 +5,9 @@ PImage img;
 PImage img2;
 PImage img3;
 
+int q = 0;
+int w = 0;
+
 int direction = 1;
 int direction2 = 0;
 
@@ -26,6 +29,7 @@ void setup() {
  
 void draw() {
   image(img, 0, 0);
+  
 
   fill (0, 175, 255);
   smooth ();
@@ -36,5 +40,6 @@ void draw() {
   e.checkEdges();
   
   image(img3, 950, 0);
+
 }
  

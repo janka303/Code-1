@@ -11,8 +11,8 @@ void setup() {
 void draw(){
   background(135);
   noStroke();
-  float c = map(mouseX, 0, mouseY, 0, 175);
-  fill(255, c, 0);
+
+  fill(255, 0, 0);
   rect(mouseX+40, mouseY-50, 90, 60);
   fill(0);
   rect(mouseX, mouseY-10, 5, 150);
